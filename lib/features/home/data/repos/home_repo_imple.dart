@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:fluttertask/core/errors/failure.dart';
 import 'package:fluttertask/core/utils/api_services.dart';
 import 'package:fluttertask/features/home/data/models/product_model/product_model.dart';
@@ -18,7 +19,16 @@ class HomeRepoImple implements HomeRepo {
       }
       return Right(products);
     } catch (e) {
-      return left(ServerFailure());
+      if (e is DioError) {
+        return left(
+          ServerFailure.fromDioError(e),
+        );
+      }
+      return left(
+        ServerFailure(
+          e.toString(),
+        ),
+      );
     }
   }
 }
