@@ -46,11 +46,13 @@ class ProductItem extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 16),
-                  Text(tittle.substring(0, 18), style: TextStyle(fontSize: 14)),
+                  Text(tittle.substring(0,15), style: TextStyle(fontSize: 14),),
                   SizedBox(height: 4),
                   Text(
-                    subTittle.substring(0, 25),
+                    subTittle,
                     style: TextStyle(fontSize: 12),
+                     overflow: TextOverflow.ellipsis,
+                     maxLines: 2,
                   ),
                   SizedBox(height: 6),
                   Row(
