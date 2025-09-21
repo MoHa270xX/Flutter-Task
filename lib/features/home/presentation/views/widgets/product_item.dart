@@ -2,13 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  const ProductItem({
+    super.key,
+    required this.imageUrl,
+    required this.tittle,
+    required this.subTittle,
+    required this.price, required this.rate,
+  });
+  final String imageUrl;
+  final String tittle;
+  final String subTittle;
+  final double price;
+  final double rate;
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return SizedBox(
-      //width: size.width * ,
       height: size.height / 3,
       child: Stack(
         children: [
@@ -25,24 +35,30 @@ class ProductItem extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 16, left: 16),
-                    child: Image.asset(
-                      "assets/images/7.png",
-                      width: 95,
+                    child: SizedBox(
+                      width: 100,
                       height: 80,
-                      fit: BoxFit.cover,
+                      child: Image(
+                        image: NetworkImage(imageUrl),
+
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   SizedBox(height: 16),
-                  Text("Nike Air Jordon", style: TextStyle(fontSize: 14)),
+                  Text(tittle.substring(0, 18), style: TextStyle(fontSize: 14)),
                   SizedBox(height: 4),
                   Text(
-                    "Nike shoes flexible for wo..",
+                    subTittle.substring(0, 25),
                     style: TextStyle(fontSize: 12),
                   ),
                   SizedBox(height: 6),
                   Row(
                     children: [
-                      Text("EGP 1.200", style: TextStyle(fontSize: 12)),
+                      Text(
+                        "EGP ${price.toString()}",
+                        style: TextStyle(fontSize: 12),
+                      ),
                       SizedBox(width: 6),
                       Text(
                         "2000 EGP",
@@ -61,7 +77,7 @@ class ProductItem extends StatelessWidget {
                     children: [
                       Text("Review", style: TextStyle(fontSize: 12)),
                       SizedBox(width: 4),
-                      Text("(4.6)", style: TextStyle(fontSize: 12)),
+                      Text("(${rate.toString()})", style: TextStyle(fontSize: 12)),
                       SizedBox(width: 4),
 
                       Icon(Icons.star, color: Colors.yellow, size: 14),
@@ -96,7 +112,6 @@ class ProductItem extends StatelessWidget {
               width: 35,
               height: 35,
               decoration: BoxDecoration(
-                
                 color: Color(0xff004078),
                 borderRadius: BorderRadius.circular(30),
               ),

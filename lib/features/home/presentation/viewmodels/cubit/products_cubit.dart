@@ -9,8 +9,9 @@ class ProductsCubit extends Cubit<ProductsState> {
   ProductsCubit(this.homeRepo) : super(ProductsInitial());
   final HomeRepo homeRepo;
   Future<void> fetchAllProducts()async {
+      print("Cubit: fetching products...");
     emit(ProductsLoading());
-    var res = await homeRepo.fethAllProducts();
+    var res = await homeRepo.fetchProducts();
     res.fold(  (Failure) {
         emit(ProductsFailure(Failure.errMessage));
       },

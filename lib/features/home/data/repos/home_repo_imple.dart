@@ -10,7 +10,7 @@ class HomeRepoImple implements HomeRepo {
   HomeRepoImple(this.apiService);
 
   @override
-  Future<Either<Failure, List<ProductModel>>> fethAllProducts() async {
+  Future<Either<Failure, List<ProductModel>>> fetchProducts() async {
     try {
       var data = await apiService.getdata();
       List<ProductModel> products = [];
